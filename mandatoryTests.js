@@ -27,19 +27,24 @@ describe('verification-all', function () {
     describe('verification examples', function () {
         this.timeout(50000);
         for (const [title, validExample] of validExamples) {
-            console.log("title test size = " + tests.length);
+            // console.log("title test size = " + tests.length);
             it(title, async function () {
+                const startTime = new Date();
                 const result = await validateStrict(tests, validExample)
-                console.log(JSON.stringify(result));
+                const endTime = new Date();
+                const duration = endTime.getTime() - startTime.getTime();
+                console.log(`Test ${title} execution time: ${duration}ms`);
+                // console.log(JSON.stringify(result));
                 // expect(result.errors.length).to.equal(0)
             })
         }
+
     })
 
     describe('S6.3.8 Spell check-- hight cost', function () {
         this.timeout(50000);
         for (const [title, validExample] of validExamples) {
-            console.log("title test size = " + tests.length);
+            // console.log("title test size = " + tests.length);
             it(title, async function () {
                 const result = await validateStrict(hight_cost_test, validExample)
                 console.log(JSON.stringify(result));
@@ -51,7 +56,7 @@ describe('verification-all', function () {
     describe('6.3.6 Use of non-self referencing URLs Failing to Resolve', function () {
         this.timeout(50000);
         for (const [title, validExample] of validExamples) {
-            console.log("title test size = " + tests.length);
+            // console.log("title test size = " + tests.length);
             it(title, async function () {
                 const result = await validateStrict(time_out_test, validExample)
                 console.log(JSON.stringify(result));
